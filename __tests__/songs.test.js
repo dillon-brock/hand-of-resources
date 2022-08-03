@@ -46,18 +46,17 @@ describe('song routes', () => {
   });
   it('PUT should update a song', async () => {
     const newSongData = {
-      title: 'Pangea',
-      album: 'Turn To Each Other',
-      length: 215
+      title: 'Title and Registration',
+      length: 219
     };
-    const res = await request(app).put('/songs/5').send(newSongData);
+    const res = await request(app).put('/songs/1').send(newSongData);
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
-      id: '5',
-      title: 'Pangea',
-      artist: 'And The Kids',
-      album: 'Turn To Each Other',
-      length: 215
+      id: '1',
+      title: 'Title and Registration',
+      artist: 'Death Cab For Cutie',
+      album: 'Transatlanticism',
+      length: 219
     });
   });
   afterAll(() => {
