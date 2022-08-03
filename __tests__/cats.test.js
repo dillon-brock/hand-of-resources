@@ -7,7 +7,7 @@ describe('cats routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('GET should return a list of songs', async () => {
+  it('GET should return a list of cats', async () => {
     const res = await request(app).get('/cats');
     expect(res.status).toBe(200);
     expect(res.body[0]).toEqual({
