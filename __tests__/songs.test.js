@@ -44,6 +44,22 @@ describe('song routes', () => {
       ...newSong
     });
   });
+  it('PUT should update a song', async () => {
+    const newSongData = {
+      title: 'Pangea',
+      album: 'Turn To Each Other',
+      length: 215
+    };
+    const res = await request(app).put('/songs/5').send(newSongData);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '5',
+      title: 'Pangea',
+      artist: 'And The Kids',
+      album: 'Turn To Each Other',
+      length: 215
+    });
+  });
   afterAll(() => {
     pool.end();
   });
