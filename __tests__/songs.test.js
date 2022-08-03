@@ -71,7 +71,7 @@ describe('song routes', () => {
     });
 
     const songResp = await request(app).get('/songs/4');
-    expect(res.status).toBe(404);
+    expect(songResp.status).toBe(404);
   });
   afterAll(() => {
     pool.end();
