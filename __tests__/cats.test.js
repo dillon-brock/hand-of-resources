@@ -17,6 +17,15 @@ describe('cats routes', () => {
       breed: expect.any(String)
     });
   });
+  it('GET should return a cat with id matching request params', async () => {
+    const res = await request(app).get('/cats/1');
+    expect(res.body).toEqual({
+      id: '1',
+      name: 'Arlop',
+      age: 3,
+      breed: 'Lynx Point Siamese'
+    });
+  });
   afterAll(() => {
     pool.end();
   });
