@@ -59,6 +59,20 @@ describe('song routes', () => {
       length: 219
     });
   });
+  it('DELETE should delete a song', async () => {
+    const res = await request(app).delete('/songs/4');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '4',
+      title: 'Some things Cosmic',
+      artist: 'Angel Olsen',
+      album: 'Strange Cacti',
+      length: 175
+    });
+
+    const songResp = await request(app).get('/songs/4');
+    expect(res.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
