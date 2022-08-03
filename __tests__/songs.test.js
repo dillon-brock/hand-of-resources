@@ -10,7 +10,6 @@ describe('song routes', () => {
   it('GET should return a list of songs', async () => {
     const res = await request(app).get('/songs');
     expect(res.status).toBe(200);
-    expect(res.body.length).toEqual(4);
     expect(res.body[0]).toEqual({
       id: expect.any(String),
       title: expect.any(String),
