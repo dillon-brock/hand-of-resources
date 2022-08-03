@@ -30,6 +30,20 @@ describe('song routes', () => {
       length: 475
     });
   });
+  it('POST should add a new song', async () => {
+    const newSong = {
+      title: 'Glory Glory',
+      artist: 'And The Kids',
+      album: 'Friends Share Lovers',
+      length: 289
+    };
+    const res = await request(app).post('/songs').send(newSong);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newSong
+    });
+  });
   afterAll(() => {
     pool.end();
   });
