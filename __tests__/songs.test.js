@@ -19,6 +19,17 @@ describe('song routes', () => {
       length: expect.any(Number)
     });
   });
+  it('GET should return a song with id matching request params', async () => {
+    const res = await request(app).get('/songs/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '1',
+      title: 'Transatlanticism',
+      artist: 'Death Cab For Cutie',
+      album: 'Transatlanticism',
+      length: 475
+    });
+  });
   afterAll(() => {
     pool.end();
   });
