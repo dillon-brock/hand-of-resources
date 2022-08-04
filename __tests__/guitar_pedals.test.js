@@ -43,6 +43,23 @@ describe('guitar pedal routes', () => {
       ...newPedal
     });
   });
+  it('PUT should update a guitar pedal', async () => {
+    const pedalUpdate = {
+      name: 'Sunlight Dynamic Freeze Reverb'
+    };
+    const res = await request(app).put('/guitar-pedals/3').send(pedalUpdate);
+    expect(res.status).toBe(200);
+    
+    const pedalRes = await request(app).get('/guitar-pedals/3');
+    expect(pedalRes.body).toEqual({
+      id: '3',
+      name: 'Sunlight Dynamic Freeze Reverb',
+      brand: 'Old Blood Noise Endeavors',
+      type: 'Reverb',
+      price: 219
+    });
+
+  });
   afterAll(() => {
     pool.end();
   });
