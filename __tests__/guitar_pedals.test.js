@@ -18,6 +18,17 @@ describe('guitar pedal routes', () => {
       price: expect.any(Number)
     });
   });
+  it('GET should return a guitar pedal with id matching the request params', async () => {
+    const res = await request(app).get('/guitar-pedals/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '1',
+      name: 'Astral Destiny',
+      brand: 'Earthquaker Devices',
+      type: 'Reverb',
+      price: 199
+    });
+  });
   afterAll(() => {
     pool.end();
   });
