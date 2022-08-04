@@ -30,7 +30,7 @@ describe('cats routes', () => {
     const newCat = {
       name: 'Leo',
       age: 7,
-      breed: 'Orange Tabby'
+      breed: 'Orange Tabby',
     };
     const res = await request(app).post('/cats').send(newCat);
     expect(res.status).toBe(200);
