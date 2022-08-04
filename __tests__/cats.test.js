@@ -26,6 +26,19 @@ describe('cats routes', () => {
       breed: 'Lynx Point Siamese'
     });
   });
+  it('POST should add a new cat', async () => {
+    const newCat = {
+      name: 'Leo',
+      age: 7,
+      breed: 'Orange Tabby'
+    };
+    const res = await request(app).post('/cats').send(newCat);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newCat
+    });
+  });
   afterAll(() => {
     pool.end();
   });
