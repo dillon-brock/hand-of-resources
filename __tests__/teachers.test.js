@@ -18,6 +18,17 @@ describe('teacher routes', () => {
       school: 'Portland Community College'
     });
   });
+  it('GET should return a teacher with id matching request params', async () => {
+    const res = await request(app).get('/teachers/2');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '2',
+      first_name: 'Tom',
+      last_name: 'Walsh',
+      subject: 'History',
+      school: 'Falmouth High School'
+    });
+  });
   afterAll(() => {
     pool.end();
   });
