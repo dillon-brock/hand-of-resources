@@ -43,6 +43,21 @@ describe('teacher routes', () => {
       ...newTeacher
     });
   });
+  it('PUT should update a teacher', async () => {
+    const teacherUpdate = {
+      subject: 'Alexander Technique',
+    };
+    const res = await request(app).put('/teachers/1').send(teacherUpdate);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '1',
+      first_name: 'Helen',
+      last_name: 'Spencer-Wallace',
+      subject: 'Alexander Technique',
+      school: 'Portland Community College'
+    });
+    
+  });
   afterAll(() => {
     pool.end();
   });
