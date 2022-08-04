@@ -62,7 +62,14 @@ describe('guitar pedal routes', () => {
   it('DELETE should delete a guitar pedal', async () => {
     const res = await request(app).delete('/guitar-pedals/4');
     expect(res.status).toBe(200);
-
+    expect(res.body).toEqual({
+      id: '4',
+      name: 'Alpha Haunt',
+      brand: 'Old Blood Noise Endeavors',
+      type: 'Fuzz',
+      price: 229
+    });
+    
     const pedalRes = await request(app).get('/guitar-pedals/4');
     expect(pedalRes.status).toBe(404);
   });
