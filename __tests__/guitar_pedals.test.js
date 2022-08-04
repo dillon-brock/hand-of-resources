@@ -7,7 +7,7 @@ describe('guitar pedal routes', () => {
   beforeEach(() => {
     return setup(pool); 
   });
-  it('GET should return a list of guitar pedals', async () => {
+  it('GET /guitar-pedals should return a list of guitar pedals', async () => {
     const res = await request(app).get('/guitar-pedals');
     expect(res.status).toBe(200);
     expect(res.body[0]).toEqual({
@@ -18,7 +18,7 @@ describe('guitar pedal routes', () => {
       price: expect.any(Number)
     });
   });
-  it('GET should return a guitar pedal with id matching the request params', async () => {
+  it('GET /guitar-pedals/:id should return a guitar pedal with id matching the request params', async () => {
     const res = await request(app).get('/guitar-pedals/1');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
@@ -29,7 +29,7 @@ describe('guitar pedal routes', () => {
       price: 199
     });
   });
-  it('POST should add a new guitar pedal', async () => {
+  it('POST /guitar-pedals should add a new guitar pedal', async () => {
     const newPedal = {
       name: 'Rainbow Machine',
       brand: 'Earthquaker Devices',
@@ -43,7 +43,7 @@ describe('guitar pedal routes', () => {
       ...newPedal
     });
   });
-  it('PUT should update a guitar pedal', async () => {
+  it('PUT /guitar-pedals/:id should update a guitar pedal', async () => {
     const pedalUpdate = {
       name: 'Sunlight Dynamic Freeze Reverb'
     };
@@ -59,7 +59,7 @@ describe('guitar pedal routes', () => {
       price: 219
     });
   });
-  it('DELETE should delete a guitar pedal', async () => {
+  it('DELETE /guitar-pedals/:id should delete a guitar pedal', async () => {
     const res = await request(app).delete('/guitar-pedals/4');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({

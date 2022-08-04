@@ -7,7 +7,7 @@ describe('city routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('GET should return a list of cities', async () => {
+  it('GET /cities should return a list of cities', async () => {
     const res = await request(app).get('/cities');
     expect(res.status).toBe(200);
     expect(res.body[0]).toEqual({
@@ -17,7 +17,7 @@ describe('city routes', () => {
       population: expect.any(Number)
     });
   });
-  it('GET should return a city with id matching request params', async () => {
+  it('GET /cities/:id should return a city with id matching request params', async () => {
     const res = await request(app).get('/cities/1');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
@@ -27,7 +27,7 @@ describe('city routes', () => {
       population: 8930002
     });
   });
-  it('POST should add a city', async () => {
+  it('POST /cities should add a city', async () => {
     const newCity = {
       city: 'Los Angeles',
       state: 'California',
@@ -40,7 +40,7 @@ describe('city routes', () => {
       ...newCity
     });
   });
-  it('PUT should update a city', async () => {
+  it('PUT /cities/:id should update a city', async () => {
     const cityUpdate = {
       city: 'N.Y.C.'
     };
@@ -53,7 +53,7 @@ describe('city routes', () => {
       population: 8930002
     });
   });
-  it('DELETE should delete a city', async () => {
+  it('DELETE /cities/:id should delete a city', async () => {
     const res = await request(app).delete('/cities/3');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({

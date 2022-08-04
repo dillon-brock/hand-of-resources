@@ -7,7 +7,7 @@ describe('cats routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('GET should return a list of cats', async () => {
+  it('GET /cats should return a list of cats', async () => {
     const res = await request(app).get('/cats');
     expect(res.status).toBe(200);
     expect(res.body[0]).toEqual({
@@ -17,7 +17,7 @@ describe('cats routes', () => {
       breed: expect.any(String)
     });
   });
-  it('GET should return a cat with id matching request params', async () => {
+  it('GET /cats/:id should return a cat with id matching request params', async () => {
     const res = await request(app).get('/cats/1');
     expect(res.body).toEqual({
       id: '1',
@@ -26,7 +26,7 @@ describe('cats routes', () => {
       breed: 'Lynx Point Siamese'
     });
   });
-  it('POST should add a new cat', async () => {
+  it('POST /cats should add a new cat', async () => {
     const newCat = {
       name: 'Leo',
       age: 7,
@@ -39,7 +39,7 @@ describe('cats routes', () => {
       ...newCat
     });
   });
-  it('PUT should update a cat', async () => {
+  it('PUT cats/:id should update a cat', async () => {
     const catUpdate = {
       name: 'Iris'
     };
@@ -54,7 +54,7 @@ describe('cats routes', () => {
       breed: 'Calico'
     });
   });
-  it('DELETE should delete a cat', async () => {
+  it('DELETE cats/:id should delete a cat', async () => {
     const res = await request(app).delete('/cats/3');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({

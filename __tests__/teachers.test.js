@@ -7,7 +7,7 @@ describe('teacher routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('GET should return a list of teachers', async () => {
+  it('GET /teachers should return a list of teachers', async () => {
     const res = await request(app).get('/teachers');
     expect(res.status).toBe(200);
     expect(res.body.find((teacher) => teacher.first_name === 'Helen')).toEqual({
@@ -18,7 +18,7 @@ describe('teacher routes', () => {
       school: 'Portland Community College'
     });
   });
-  it('GET should return a teacher with id matching request params', async () => {
+  it('GET /teachers/:id should return a teacher with id matching request params', async () => {
     const res = await request(app).get('/teachers/2');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
@@ -29,7 +29,7 @@ describe('teacher routes', () => {
       school: 'Falmouth High School'
     });
   });
-  it('POST should add a new teacher', async () => {
+  it('POST /teachers should add a new teacher', async () => {
     const newTeacher = {
       first_name: 'Jesse',
       last_name: 'Mejìa',
@@ -43,7 +43,7 @@ describe('teacher routes', () => {
       ...newTeacher
     });
   });
-  it('PUT should update a teacher', async () => {
+  it('PUT /teachers/:id should update a teacher', async () => {
     const teacherUpdate = {
       subject: 'Alexander Technique',
     };
@@ -57,7 +57,7 @@ describe('teacher routes', () => {
       school: 'Portland Community College'
     });
   });
-  it('DELETE should delete a teacher', async () => {
+  it('DELETE /teachers/:id should delete a teacher', async () => {
     const res = await request(app).delete('/teachers/4');
     expect(res.status).toBe(200);
 

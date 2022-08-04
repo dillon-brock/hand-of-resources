@@ -7,7 +7,7 @@ describe('song routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('GET should return a list of songs', async () => {
+  it('GET /songs should return a list of songs', async () => {
     const res = await request(app).get('/songs');
     expect(res.status).toBe(200);
     expect(res.body[0]).toEqual({
@@ -18,7 +18,7 @@ describe('song routes', () => {
       length: expect.any(Number)
     });
   });
-  it('GET should return a song with id matching request params', async () => {
+  it('GET /songs/:id should return a song with id matching request params', async () => {
     const res = await request(app).get('/songs/1');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
@@ -29,7 +29,7 @@ describe('song routes', () => {
       length: 475
     });
   });
-  it('POST should add a new song', async () => {
+  it('POST /songs should add a new song', async () => {
     const newSong = {
       title: 'Glory Glory',
       artist: 'And The Kids',
@@ -43,7 +43,7 @@ describe('song routes', () => {
       ...newSong
     });
   });
-  it('PUT should update a song', async () => {
+  it('PUT /songs/:id should update a song', async () => {
     const newSongData = {
       title: 'Title and Registration',
       length: 219
@@ -58,7 +58,7 @@ describe('song routes', () => {
       length: 219
     });
   });
-  it('DELETE should delete a song', async () => {
+  it('DELETE /songs/:id should delete a song', async () => {
     const res = await request(app).delete('/songs/4');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
