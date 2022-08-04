@@ -9,6 +9,7 @@ describe('city routes', () => {
   });
   it('GET should return a list of cities', async () => {
     const res = await request(app).get('/cities');
+    console.log(res.body);
     expect(res.status).toBe(200);
     expect(res.body[0]).toEqual({
       id: expect.any(String),
