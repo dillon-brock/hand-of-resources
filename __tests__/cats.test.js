@@ -54,6 +54,19 @@ describe('cats routes', () => {
       breed: 'Calico'
     });
   });
+  it('DELETE should delete a cat', async () => {
+    const res = await request(app).delete('/cats/3');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '3',
+      name: 'Marbles',
+      age: '17',
+      breed: 'Mixed'
+    });
+
+    const catResp = await request(app).get('/cats/3');
+    expect(catResp.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
