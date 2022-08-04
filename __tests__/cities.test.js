@@ -53,6 +53,19 @@ describe('city routes', () => {
       population: 8930002
     });
   });
+  it('DELETE should delete a city', async () => {
+    const res = await request(app).delete('/cities/3');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '3',
+      city: 'Austin',
+      state: 'Texas',
+      population: 965872
+    });
+
+    const cityRes = await request(app).get('/cities/3');
+    expect(cityRes.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
