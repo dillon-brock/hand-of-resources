@@ -27,6 +27,19 @@ describe('city routes', () => {
       population: 8930002
     });
   });
+  it('POST should add a city', async () => {
+    const newCity = {
+      city: 'Los Angeles',
+      state: 'California',
+      population: 3919973
+    };
+    const res = await request(app).post('/cities').send(newCity);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newCity
+    });
+  });
   afterAll(() => {
     pool.end();
   });
