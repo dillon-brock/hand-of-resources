@@ -29,6 +29,20 @@ describe('guitar pedal routes', () => {
       price: 199
     });
   });
+  it('POST should add a new guitar pedal', async () => {
+    const newPedal = {
+      name: 'Rainbow Machine',
+      brand: 'Earthquaker Devices',
+      type: 'Pitch-shifting modulator',
+      price: 229
+    };
+    const res = await request(app).post('/guitar-pedals').send(newPedal);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newPedal
+    });
+  });
   afterAll(() => {
     pool.end();
   });
