@@ -58,7 +58,13 @@ describe('guitar pedal routes', () => {
       type: 'Reverb',
       price: 219
     });
+  });
+  it('DELETE should delete a guitar pedal', async () => {
+    const res = await request(app).delete('/guitar-pedals/4');
+    expect(res.status).toBe(200);
 
+    const pedalRes = await request(app).get('/guitar-pedals/4');
+    expect(pedalRes.status).toBe(404);
   });
   afterAll(() => {
     pool.end();
