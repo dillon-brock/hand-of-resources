@@ -39,6 +39,21 @@ describe('cats routes', () => {
       ...newCat
     });
   });
+  it('PUT should update a cat', async () => {
+    const catUpdate = {
+      name: 'Iris'
+    };
+    const res = await request(app).put('/cats/4').send(catUpdate);
+    expect(res.status).toBe(200);
+    
+    const updateResp = await request(app).get('/cats/4');
+    expect(updateResp.body).toEqual({
+      id: '4',
+      name: 'Iris',
+      age: 20,
+      breed: 'Calico'
+    });
+  });
   afterAll(() => {
     pool.end();
   });
