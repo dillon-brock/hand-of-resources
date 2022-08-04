@@ -40,6 +40,19 @@ describe('city routes', () => {
       ...newCity
     });
   });
+  it('PUT should update a city', async () => {
+    const cityUpdate = {
+      city: 'N.Y.C.'
+    };
+    const res = await request(app).put('/cities/1').send(cityUpdate);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '1',
+      city: 'N.Y.C.',
+      state: 'New York',
+      population: 8930002
+    });
+  });
   afterAll(() => {
     pool.end();
   });
