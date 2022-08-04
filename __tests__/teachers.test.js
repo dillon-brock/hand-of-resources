@@ -56,7 +56,13 @@ describe('teacher routes', () => {
       subject: 'Alexander Technique',
       school: 'Portland Community College'
     });
-    
+  });
+  it('DELETE should delete a teacher', async () => {
+    const res = await request(app).delete('/teachers/4');
+    expect(res.status).toBe(200);
+
+    const teacherRes = await request(app).get('/teachers/4');
+    expect(teacherRes.status).toBe(404);
   });
   afterAll(() => {
     pool.end();
