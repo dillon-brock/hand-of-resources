@@ -29,6 +29,20 @@ describe('teacher routes', () => {
       school: 'Falmouth High School'
     });
   });
+  it('POST should add a new teacher', async () => {
+    const newTeacher = {
+      first_name: 'Jesse',
+      last_name: 'Mejìa',
+      subject: 'Creative Coding',
+      school: 'Portland Community College'
+    };
+    const res = await request(app).post('/teachers').send(newTeacher);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newTeacher
+    });
+  });
   afterAll(() => {
     pool.end();
   });
