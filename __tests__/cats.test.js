@@ -60,7 +60,7 @@ describe('cats routes', () => {
     expect(res.body).toEqual({
       id: '3',
       name: 'Marbles',
-      age: '17',
+      age: 17,
       breed: 'Mixed'
     });
 
